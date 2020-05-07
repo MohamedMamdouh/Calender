@@ -9,17 +9,18 @@ export function* getHolidays(api, action) {
 
   if (response.ok) {
     const items = path(['data', 'items'], response);
+
+    // do data conversion here if needed
     const data = items.map((item) => {
       return {
+        id: path(['id'], item),
         summary: path(['summary'], item),
         start: path(['start', 'date'], item),
         end: path(['end', 'date'], item),
       };
     });
-    // do data conversion here if needed
-    console.log('CALLED', data);
 
-    // yield put(HomeActions.holidaysSuccess(data));
+    yield put(HomeActions.holidaysSuccess(data));
   } else {
     yield put(HomeActions.holidaysFailure());
   }

@@ -22,13 +22,13 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-// request the avatar for a user
+// request the data for a user
 export const request = (state, action) => {
   const {country} = action;
   return state.merge({fetching: true, country});
 };
 
-// successful avatar lookup
+// successful data lookup
 export const success = (state, action) => {
   const {data} = action;
   return state.merge({
@@ -38,7 +38,7 @@ export const success = (state, action) => {
   });
 };
 
-// failed to get the avatar
+// failed to get the Data
 export const failure = (state) => state.merge({fetching: false, error: true});
 
 /* ------------- Hookup Reducers To Types ------------- */
